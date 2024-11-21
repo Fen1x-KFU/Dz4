@@ -3,8 +3,6 @@ using System.Security.Cryptography;
 
 namespace Tumakov
 {
-    
-
     public class Program
     {
         static void StartTask(string n)
@@ -12,63 +10,75 @@ namespace Tumakov
             Console.WriteLine($"Задание {n}");
         }
 
-        //static int Task51()
-        //{
-        //    StartTask("5.1");
-
-        //    Console.WriteLine("Введите 2 числа для сравнения!");
-
-        //    int number1 = int.Parse(Console.ReadLine());
-        //    int number2 = int.Parse(Console.ReadLine());
-
-        //    int maxNumber = Math.Max(number1, number2);
-
-        //    return maxNumber;
-        //}
-        public class Peremen
+        static int Task51()
         {
-            // Добавим свойства для хранения значений a и b
-            public int a { get; set; }
-            public int b { get; set; }
+            StartTask("5.1");
 
-            // Конструктор класса для чтения значений a и b при создании объекта
-            public Peremen()
-            {
-                a = int.Parse(Console.ReadLine());
+            Console.WriteLine("Введите 2 числа для сравнения!");
 
-                b = int.Parse(Console.ReadLine());
-            }
+            int number11 = int.Parse(Console.ReadLine());
+            int number21 = int.Parse(Console.ReadLine());
+
+            int maxNumber = Math.Max(number11, number21);
+
+            return maxNumber;
         }
-        static void Task52(Peremen peremen)
+
+        static void Reference(ref int number12, ref int number22)
+        {
+            int znach = number12;
+            number12 = number22;
+            number22 = znach;
+        }
+        static void Task52()
         {
             StartTask("5.2");
 
             Console.WriteLine("Введите значение a:");
             Console.WriteLine("Введите значение b:");
 
-            int a52;
-            int b52;
+            int a1 = int.Parse(Console.ReadLine());
+            int b1 = int.Parse(Console.ReadLine());
 
-            a52 = peremen.b;
-            b52 = peremen.a;
+            Reference(ref a1, ref b1);
 
-            Console.WriteLine(a52);6
-            Console.WriteLine(b52);
+            Console.WriteLine($"Поменяем a и b местами и получим, что a = {a1}, b = {b1}");
         }
 
-        //static void Task53()
-        //{
-        //    StartTask("5.3");
+        static bool Task53(int number, out long result)
+        {
+            StartTask("5.3");
 
+            Console.WriteLine("Введите номер факториала!");
+            number = int.Parse(Console.ReadLine());
+            
+            result = 1;
+            try
+            {
+                checked
+                {
+                    for (int i = 1; i <= number; i++)
+                    {
+                        result *= i;
+                    }
+                }
+                return true;
+            }
+            catch (OverflowException)
+            {
+                return false;
+            }
+        }
 
-        //}
         static void Main()
         {
 
-            //Console.WriteLine($"Максимальное из этих чисел: {Task51()}");
-            Peremen peremen = new Peremen();
-            Task52(peremen);
-            //Task53();
+            Console.WriteLine($"Максимальное из этих чисел: {Task51()}");
+            Task52();
+            int num = 0;
+            long factorialResult;
+            bool success = Task53(num, out factorialResult);
+            Console.WriteLine(success);
         }
     }
 }
